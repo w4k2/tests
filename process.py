@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import csv
 
-np.random.seed(1337)
+#np.random.seed(1337)
+print np.random.randint(9999)
 
 from sklearn import model_selection, metrics
 
@@ -16,7 +17,7 @@ clfs = h.classifiers()
 ks = h.ks()
 
 for dataset in datasets:
-    #print dataset
+    print dataset
     # Gather dataset
     ds = pd.read_csv(dataset[0], header=None).as_matrix()
     X, y = ds[:,:-1], ds[:,-1].astype('int')
@@ -24,8 +25,7 @@ for dataset in datasets:
     # CV
     for repetition in xrange(repetitions):
         for k in ks:
-            cv = model_selection.StratifiedKFold(n_splits=k)
-
+            cv = model_selection.StratifiedKFold(n_splits=k, random_state=repetition, shuffle=True)
             fold = 0
             k_accuracies = []
             for train, test in cv.split(X, y):
@@ -51,4 +51,3 @@ for dataset in datasets:
                 spamwriter.writerow(clfs.keys())
                 for row in k_accuracies:
                     spamwriter.writerow(row)
-# %%
