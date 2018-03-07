@@ -4,8 +4,7 @@ import numpy as np
 import pandas as pd
 import csv
 
-#np.random.seed(1337)
-print np.random.randint(9999)
+np.random.seed(1337)
 
 from sklearn import model_selection, metrics
 
@@ -25,7 +24,7 @@ for dataset in datasets:
     # CV
     for repetition in xrange(repetitions):
         for k in ks:
-            cv = model_selection.StratifiedKFold(n_splits=k, random_state=repetition, shuffle=True)
+            cv = model_selection.StratifiedKFold(n_splits=k, random_state=np.random.randint(9999), shuffle=True)
             fold = 0
             k_accuracies = []
             for train, test in cv.split(X, y):
