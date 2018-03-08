@@ -17,7 +17,7 @@ for result in results:
     filename = result[0]
     df = pd.read_csv(filename)
 
-    #print "Repetition %i with %s on %s" % (repetition, cv_method, dbname)
+    print "Repetition %i with %s on %s" % (repetition, cv_method, dbname)
     #print df
 
     #print clfs
