@@ -4,12 +4,22 @@ import numpy as np
 from sklearn import neural_network, neighbors, svm, gaussian_process, tree, ensemble, naive_bayes, discriminant_analysis, model_selection
 from sklearn import datasets
 
+
 def datasets():
     directory = 'datasets/'
-    files = np.array([(directory + x, x[:-4]) for \
-        x in os.listdir(directory) \
-        if re.match('^([a-zA-Z0-9])+\.csv$', x)])
+    files = np.array([(directory + x, x[:-4]) for
+                      x in os.listdir(directory)
+                      if re.match('^([a-zA-Z0-9])+\.csv$', x)])
     return files
+
+
+def results():
+    directory = 'results/'
+    files = np.array([(directory + x, x[:-4], x[:-4].split('_')[0], x[:-4].split('_')[1], x[:-4].split('_')[2]) for
+                      x in sorted(os.listdir(directory))
+                      if re.match('^([a-zA-Z0-9_])+\.csv$', x)])
+    return files
+
 
 def classifiers():
     return {
@@ -24,6 +34,7 @@ def classifiers():
         #"Linear SVM": svm.SVC(kernel="linear", C=0.025, probability=True),
         #"AdaBoost": ensemble.AdaBoostClassifier(),
     }
+
 
 def ks():
     return [10, 20, 30]
