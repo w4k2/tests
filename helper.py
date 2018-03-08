@@ -29,10 +29,7 @@ def classifiers():
         "Random Forest": ensemble.RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
         "Neural Net": neural_network.MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1),
         "Naive Bayes": naive_bayes.GaussianNB(),
-
-        #"Gaussian Process": gaussian_process.GaussianProcessClassifier(1.0 * gaussian_process.kernels.RBF(1.0)),
-        #"Linear SVM": svm.SVC(kernel="linear", C=0.025, probability=True),
-        #"AdaBoost": ensemble.AdaBoostClassifier(),
+        "Linear SVM": svm.SVC(kernel="linear", C=0.025, probability=True)
     }
 
 
