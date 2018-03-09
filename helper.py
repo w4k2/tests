@@ -35,3 +35,6 @@ def classifiers():
 
 def ks():
     return [10, 20, 30]
+
+def p_s():
+    return [.1,.05,.01]
