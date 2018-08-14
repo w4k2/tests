@@ -1,15 +1,15 @@
-# Testy
+# Tests
 
-Testujemy szesnaście zbiorów danych z UCI ML (w katalogu `datasets`). Stosujemy cztery podziały zbiorów:
+We test sixteen datasets from UCI ML (in the `datasets` directory). We use four approaches of division:
 
 - 10-fold CV
 - 20-fold CV
 - 30-fold CV
 - 5 times 2-fold CV
 
-Eksperymenty przeprowadzamy dla siedmiu klasyfikatorów:
+We run experiments for seven classifiers:
 
-- kNN (k=3),
+- kNN (k = 3),
 - RBF SVM,
 - Linear SVM,
 - Naive Bayes,
@@ -17,21 +17,21 @@ Eksperymenty przeprowadzamy dla siedmiu klasyfikatorów:
 - Random Forest,
 - MLP
 
-Dodatkowo, dla każdego zbioru i każdej metody podziału dokonujemy dziesięć powtórzeń, w każdym przypadku ucząc i testując klasyfikatory na wspólnym podziale. W sumie daje to nam 78400 rezultatów klasyfikacji. Wyniki są składowane w katalogu `results`.
+In addition, for each set and each division method, we perform ten repetitions, in each case teaching and testing classifiers on a shared division. In total, it gives us 78400 results of the classification. The results are stored in the `results` directory.
 
-Ze względu na obecność tak problemów binarnych, jak wieloklasowych, w wyniku podawana jest miara *accuracy*, uzupełniona o odchylenie standardowe.
+Due to the presence of such binary as multi-class problems, the result is the *accuracy* measure, supplemented by a standard deviation.
 
-Dla każdej kombinacji metody podziału, powtórzenia i zbioru danych wyliczane są testy dla dwóch metod:
+For each combination of division, repetition and data set methods, tests are calculated for two methods:
 
-- test Wilcoxona,
-- test T-Studenta.
+- Wilcoxon test,
+- Student's T-test.
 
-Dla każdej metody przyjmujemy trzy progi:
+We employ three thresholds for each method:
 
 - p = .9
 - p = .95
 - p = .99
 
-W module analitycznym poszukiwane są kombinacje metody podziału, powtórzenia, użytego testu i progu, które dla każdego z klasyfikatorów dały co najmniej trzy zbiory danych, w których wybrany algorytm jest najlepszym lub należy do grupy maksymalnie trzech najlepszych zależnych od sobie statystycznie algorytmów (pod warunkiem, że każdy z nich jest statystycznie niezależny od tej samej liczby pozostałych).
+The analytical module sought to combine the methods of division, repetition, used test and threshold, which for each classifier yielded at least three sets of data in which the selected algorithm is the best or belongs to a group of up to three best statistically dependent algorithms (when each of them is statistically independent from the same number of others).
 
-W katalogu `plots` znajdują się wykresy słupkowe dla wszystkich wykrytych w ten sposób przypadków.
+The `plots` directory contains bar graphs for all cases detected in this way.

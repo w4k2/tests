@@ -19,11 +19,11 @@ p_s = h.p_s()
 
 for i, clf in enumerate(clfs):
     collisions = []
-    print "---\n%s [%i]" % (clf, i)
+    print("---\n%s [%i]" % (clf, i))
     for measure in measures:
         for p in p_s:
             for cv_method in cv_methods:
-                for r in xrange(repetitions):
+                for r in range(repetitions):
                     db_count = 0
                     dbs = []
                     for dataset in datasets:
@@ -43,7 +43,7 @@ for i, clf in enumerate(clfs):
                     if len(dbs) > 2:
                         record = [len(dbs), cv_method, measure, p, r, ":".join(dbs)]
                         collisions.append(record)
-    print "%i collisions found" % len(collisions)
+    print("%i collisions found" % len(collisions))
 
     collisions = sorted(collisions,key=lambda l:l[0], reverse=True)
     with open("collisions/%s.csv" % clf, 'wb') as csvfile:

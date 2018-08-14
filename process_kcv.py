@@ -16,13 +16,13 @@ clfs = h.classifiers()
 ks = h.ks()
 
 for dataset in datasets:
-    print dataset
+    print(dataset)
     # Gather dataset
     ds = pd.read_csv(dataset[0], header=None).as_matrix()
     X, y = ds[:,:-1], ds[:,-1].astype('int')
 
     # CV
-    for repetition in xrange(repetitions):
+    for repetition in range(repetitions):
         for k in ks:
             cv = model_selection.StratifiedKFold(n_splits=k, random_state=np.random.randint(9999), shuffle=True)
             fold = 0
@@ -43,9 +43,9 @@ for dataset in datasets:
 
                 fold += 1
             filename = "results/%s_r%i_k%i.csv" % (dataset[1], repetition, k)
-            print filename
+            print(filename)
             k_accuracies = np.array(k_accuracies)
-            with open(filename, 'wb') as csvfile:
+            with open(filename, 'w') as csvfile:
                 spamwriter = csv.writer(csvfile)
                 spamwriter.writerow(clfs.keys())
                 for row in k_accuracies:

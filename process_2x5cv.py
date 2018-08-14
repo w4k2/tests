@@ -7,7 +7,6 @@ import csv
 np.random.seed(1337)
 
 from sklearn import model_selection, metrics
-
 from tqdm import tqdm
 
 repetitions = 10
@@ -15,13 +14,13 @@ datasets = h.datasets()
 clfs = h.classifiers()
 
 for dataset in datasets:
-    print dataset
+    print(dataset)
     # Gather dataset
     ds = pd.read_csv(dataset[0], header=None).as_matrix()
     X, y = ds[:,:-1], ds[:,-1].astype('int')
 
     # CV
-    for repetition in xrange(repetitions):
+    for repetition in range(repetitions):
         cv = model_selection.RepeatedStratifiedKFold(n_splits=2,n_repeats=5, random_state=np.random.randint(9999))
         fold = 0
         k_accuracies = []
@@ -41,9 +40,9 @@ for dataset in datasets:
 
             fold += 1
         filename = "results/%s_r%i_k2x5.csv" % (dataset[1], repetition)
-        print filename
+        print(filename)
         k_accuracies = np.array(k_accuracies)
-        with open(filename, 'wb') as csvfile:
+        with open(filename, 'w') as csvfile:
             spamwriter = csv.writer(csvfile)
             spamwriter.writerow(clfs.keys())
             for row in k_accuracies:
