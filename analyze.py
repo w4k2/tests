@@ -17,7 +17,7 @@ p_s = h.p_s()
 
 # Iterating results
 for p in p_s:
-    print p
+    print(p)
     for result in results:
         # Get params for results
         dbname = result[2]
@@ -78,8 +78,8 @@ for p in p_s:
             print a_ts
             """
 
-            adv_w[i] = a_ws
-            adv_t[i] = a_ts
+            adv_w[i] = int(a_ws)
+            adv_t[i] = int(a_ts)
 
         # Collect and write analysis
         data = {
@@ -88,7 +88,7 @@ for p in p_s:
                 "repetition": repetition,
                 "cv_method": cv_method,
             },
-            "clfs": clfs,
+            "clfs": list(clfs),
             "mean": list(mean_scores),
             "std": list(std_scores),
             "adv_w": adv_w,
