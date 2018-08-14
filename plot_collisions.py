@@ -16,13 +16,13 @@ tests = {
     "t": "T-Student"
 }
 for cid, clf in enumerate(clfs):
-    print clf
+    print(clf)
     colors = ["#BBDEFB","#90CAF9","#64B5F6","#42A5F5","#2196F3","#1E88E5"]
     colors.insert(cid, "#F44336")
 
     df = pd.read_csv("collisions/%s.csv" % clf)
     for row in df.values:
-        print row
+        print(row)
         _, cv_method, measure, p, r, dbs = row
         dbs = dbs.split(":")
 
@@ -30,7 +30,7 @@ for cid, clf in enumerate(clfs):
         ax.set_title("%s as a good solution \nRepetition %i, with %s cv using %s test with p=%.2f" % (clf, r, cv_method, tests[measure], 1-p))
         ax.set_ylabel('Accuracy')
         ax.set_ylim(0,1.1)
-        ax.set_xticks(xrange(_))
+        ax.set_xticks(range(_))
         ax.set_xticklabels(dbs)
 
 

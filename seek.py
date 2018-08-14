@@ -46,7 +46,7 @@ for i, clf in enumerate(clfs):
     print("%i collisions found" % len(collisions))
 
     collisions = sorted(collisions,key=lambda l:l[0], reverse=True)
-    with open("collisions/%s.csv" % clf, 'wb') as csvfile:
+    with open("collisions/%s.csv" % clf, 'w') as csvfile:
         spamwriter = csv.writer(csvfile)
         spamwriter.writerow(["n_db","cv_method","measure","p","r","dbs"])
         for row in collisions:
