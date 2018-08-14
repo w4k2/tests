@@ -46,3 +46,4 @@ for cid, clf in enumerate(clfs):
 
         plotfilename = "plots/%s_r%i_%s_%s_p%i.png" % (clf.replace(" ","_").lower(), r, cv_method, measure, int(p*100))
         plt.savefig(plotfilename)
+        plt.close('all')
