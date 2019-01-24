@@ -17,11 +17,13 @@ for dataset in datasets:
     print(dataset)
     # Gather dataset
     ds = pd.read_csv(dataset[0], header=None).as_matrix()
-    X, y = ds[:,:-1], ds[:,-1].astype('int')
+    X, y = ds[:, :-1], ds[:, -1].astype("int")
 
     # CV
     for repetition in range(repetitions):
-        cv = model_selection.RepeatedStratifiedKFold(n_splits=2,n_repeats=5, random_state=np.random.randint(9999))
+        cv = model_selection.RepeatedStratifiedKFold(
+            n_splits=2, n_repeats=5, random_state=np.random.randint(9999)
+        )
         fold = 0
         k_accuracies = []
         for train, test in cv.split(X, y):
@@ -33,7 +35,7 @@ for dataset in datasets:
                 clf = clfs[clf_n]
                 clf.fit(fold_X_train, fold_y_train)
                 probas = clf.predict_proba(fold_X_test)
-                prediction = np.argmax(probas,axis = 1)
+                prediction = np.argmax(probas, axis=1)
                 accuracy = metrics.accuracy_score(fold_y_test, prediction)
                 clf_accuracies.append(accuracy)
             k_accuracies.append(clf_accuracies)
@@ -42,7 +44,7 @@ for dataset in datasets:
         filename = "results/%s_r%i_k2x5.csv" % (dataset[1], repetition)
         print(filename)
         k_accuracies = np.array(k_accuracies)
-        with open(filename, 'w') as csvfile:
+        with open(filename, "w") as csvfile:
             spamwriter = csv.writer(csvfile)
             spamwriter.writerow(clfs.keys())
             for row in k_accuracies:
